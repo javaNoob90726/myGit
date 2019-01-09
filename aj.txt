@@ -1,0 +1,21 @@
+function postUrl(url, params,target) {		
+		var temp = document.createElement("form");		
+		temp.action = url;
+		temp.method = "post";		
+		temp.style.display = "none";		
+		for (var x in params) {		
+			var opt = document.createElement("textarea");		
+			opt.name = x;		
+			opt.value = params[x];		
+			temp.appendChild(opt);		
+		}		
+		document.body.appendChild(temp);
+		temp.target = target;
+		temp.submit();		
+		return temp;
+	}  
+
+var printUrl="<%=loginSession.getReportConfigInfoVO().getPrintURL()%>?tbname=" + tblname;
+		var left = (window.screen.availWidth-900)/2;
+		window.open("", "printwindow", "height=600, width=900, toolbar= no, menubar=no, scrollbars=no, resizable=yes, location=no, status=no,top=50,left="+left);
+		postUrl(printUrl,{"wherestr":fileListWhere},"printwindow");
